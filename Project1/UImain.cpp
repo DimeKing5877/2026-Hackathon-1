@@ -109,4 +109,3 @@ std::string generateIncriptionKey(){
 //	char* encryptedCStr = new char[encrypted.length() + 1]; //allocate memory for the encripted string
 //	strcpy(encryptedCStr, encrypted.c_str()); //copy the encripted string to a C-style string
 //	return encryptedCStr; //return the encripted string
-}

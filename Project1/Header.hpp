@@ -65,3 +65,10 @@ private:
 	char* encrypt(char* info, char* key, int size);
 	char* decrypt(char* info, char* key, int size);
 };
+
+
+
+
+
+void mainmenu(void);
+
