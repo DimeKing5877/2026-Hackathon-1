@@ -4,12 +4,13 @@
 
 
 int main(void) {
-	Node* pHead = NULL;
-	int answer = 0;
-	LinkList list;
-	keycreation incription;
-	char key[16] = "";
-	int success = 0;
+	//UImain();
+	//encription key char array
+	char encriptionKey[16] = "";
+	getEncriptionKey(encriptionKey);
+
+
+
 
 	//key is checked
 
@@ -52,11 +53,17 @@ int main(void) {
 
 	return 0;
 }
-void UImain() {
+
+
+
+
+void getEncriptionKey(char* charKey) {
 	std::string filename = "encripted.txt";
 	//checks if the user has a key or needs to generat one
 	std::string userKey = userKeyEntry(filename);
 	//pritn user key
 	std::cout << "User key: " << userKey << std::endl;
+	//convert user key to char array
+	strcpy(charKey, userKey.c_str());
 	system("pause");
 }
