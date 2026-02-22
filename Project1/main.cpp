@@ -61,13 +61,17 @@ int main(void) {
 					}
 					break;
 				case 4:
-					if (pHead != NULL) {
-						FILE* outFile = fopen("encripted.txt", "w");
-						if (outFile != NULL) {
-							list.savelist(pHead, outFile, encriptionKey);
-						}
-						fclose(outFile);
+					int value = 0;
+					list.displayFull(pHead);
+					std::cout << "What entry would you like to delete: ";
+					if (std::cin >> value) {
+						list.deleteNode(&pHead, list.search(pHead, value));
 					}
+					else {
+						std::cout << "delete failed: " ;
+					}
+					system("pause");
+					system("cls");
 					break;
 				case 5:
 					insertUserData(&pHead);
@@ -85,8 +89,8 @@ int main(void) {
 						FILE* outFile = fopen("encripted.txt", "w");
 						if (outFile != NULL) {
 							list.savelist(pHead, outFile, encriptionKey);
+							fclose(outFile);
 						}
-						fclose(outFile);
 					}
 					break;
 				}
@@ -102,7 +106,9 @@ int main(void) {
 		std::cout << "Failed to load the encripted file. Please check the file and the encription key." << std::endl;
 	}
 
-	//list.savelist(pHead, outFile, encriptionKey);
+	if (pHead != NULL) {
+		list.clearList(&pHead);
+	}
 	return 0;
 }
 
