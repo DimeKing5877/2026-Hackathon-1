@@ -27,6 +27,12 @@
     <ClCompile Include="cryption.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="mainFunc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GetInfoFunc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="UIHeader.hpp">
