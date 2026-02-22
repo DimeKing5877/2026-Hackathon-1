@@ -31,11 +31,8 @@ int LinkList::loadlist(Node** pHead, FILE* inputStream, char* key){
 	Data info;
 	while (fgets(line, LINE_SIZE, inputStream) != NULL) {
 
-		strcpy(info.website, strtok(line, ","));
-		strcpy(info.email, strtok(NULL, ","));
-		strcpy(info.username, strtok(NULL, ","));
-		strcpy(info.password, strtok(NULL, ","));
-		strcpy(info.date, strtok(NULL, "\n"));
+		info = loadLine(line);
+		
 		//info = dectyption(info, key);
 		
 		success = insertatfront(pHead, info);
@@ -44,6 +41,16 @@ int LinkList::loadlist(Node** pHead, FILE* inputStream, char* key){
 		success = 1;
 	}
 	return success;
+}
+
+Data LinkList::loadLine(char* line){
+	Data info = {};
+	strcpy(info.website, strtok(line, ","));
+	strcpy(info.email, strtok(NULL, ","));
+	strcpy(info.username, strtok(NULL, ","));
+	strcpy(info.password, strtok(NULL, ","));
+	strcpy(info.date, strtok(NULL, "\n"));
+	return info;
 }
 
 int LinkList::insertatfront(Node** pHead, Data info){
@@ -74,9 +81,9 @@ Node* LinkList::creatNode(Data info){
 	return pMem;
 }
 
-void LinkList::clearList(Node** pHead)
-{
+void LinkList::clearList(Node** pHead){
 	Node* pCur = *pHead;
+
 	while (pCur->pNext != NULL) {
 		pCur = pCur->pNext;
 		free(pCur->pPrev);
@@ -142,19 +149,32 @@ void LinkList::displayType(Node* pHead, char* type){
 	}
 }
 
-void LinkList::deleteNode(Node** pHead, Node* pCur){
-	if (pCur->pPrev == NULL) {
-		*pHead = pCur->pNext;
-		free(pCur);
+Node* LinkList::search(Node* pHead, int value){
+	Node* pCur = pHead;
+	int count = 1;
+	while(pCur != NULL && count < value){
+		count += 1;
+		pCur = pCur->pNext;
 	}
-	else if (pCur->pNext == NULL) {
-		pCur->pPrev->pNext = NULL;
-		free(pCur);
-	}
-	else {
-		pCur->pPrev->pNext = pCur->pNext;
-		pCur->pNext->pPrev = pCur->pPrev;
-		free(pCur);
+	
+	return pCur;
+}
+
+void LinkList::deleteNode(Node** pHead, Node* pCur) {
+	if (pCur != NULL) {
+		if (pCur->pPrev == NULL) {
+			*pHead = pCur->pNext;
+			free(pCur);
+		}
+		else if (pCur->pNext == NULL) {
+			pCur->pPrev->pNext = NULL;
+			free(pCur);
+		}
+		else {
+			pCur->pPrev->pNext = pCur->pNext;
+			pCur->pNext->pPrev = pCur->pPrev;
+			free(pCur);
+		}
 	}
 }
 
@@ -162,16 +182,9 @@ int LinkList::insert(Node** pHead, FILE* inputStream){
 	int success = 0;
 	char line[LINE_SIZE] = "";
 	Data info;
-	while (fgets(line, LINE_SIZE, inputStream) != NULL) {
-
-		strcpy(info.website, strtok(line, ","));
-		strcpy(info.email, strtok(NULL, ","));
-		strcpy(info.username, strtok(NULL, ","));
-		strcpy(info.password, strtok(NULL, ","));
-		strcpy(info.date, strtok(NULL, "\n"));
-
-		success = insertatfront(pHead, info);
-	}
+	info = loadLine(line);
+	success = insertatfront(pHead, info);
+	
 	return success;
 }
 

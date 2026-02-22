@@ -35,6 +35,8 @@ public:
 	void linkFunCall(int selection, Node** pHead);
 	int loadlist(Node** pHead, FILE* inputStream, char* key);
 
+	Data loadLine(char* line);
+
 
 	//functions
 	int insertatfront(Node** pHead, Data info);
@@ -46,9 +48,11 @@ public:
 	void displayFull(Node* pHead);
 	void displayType(Node* pHead, char* type);
 
+
+	Node* search(Node* pHead, int value);
 	void deleteNode(Node** pHead, Node* pCur);
 	int insert(Node** pHead, FILE* inputStream);
-	void edit(Node* pHead);
+	void edit(Node* pHead, int);
 
 
 
