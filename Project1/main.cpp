@@ -40,10 +40,15 @@ int main(void) {
 					break;
 				case 2:
 					if (pHead != NULL) {
-						char site[SITE_SIZE] = "";
-						std::cout << "what site would you like to search" << std::endl;
+						system("cls");
+						std::string site;
+						char siteChr[SITE_SIZE] = "";
+						std::cout << "what site would you like to search: ";
 						if (std::cin >> site) {
-							list.displayEmail(pHead, site);
+							//converts string to char array
+							strcpy(siteChr, site.c_str());
+							//searches for site and displays entry
+							list.displayEmail(pHead, siteChr);
 						}
 						system("pause");
 						system("cls");
@@ -51,10 +56,14 @@ int main(void) {
 					break;
 				case 3:
 					if (pHead != NULL) {
-						char email[email_SIZE] = "";
+						std::string email;
+						char emailChr[email_SIZE] = "";
 						std::cout << "what email would you like to search" << std::endl;
 						if (std::cin >> email) {
-							list.displayEmail(pHead, email);
+							//converts string to char array
+							strcpy(emailChr, email.c_str());
+							//searches for email and displays entry
+							list.displayEmail(pHead, emailChr);
 						}
 						system("pause");
 						system("cls");
@@ -77,9 +86,8 @@ int main(void) {
 					break;
 
 				case 7:
-						
+					getNewEncriptionKey(encriptionKey);
 					break;
-            
 				case 8://exit
 					if (pHead != NULL) {
 						FILE* outFile = fopen("encripted.txt", "w");
@@ -105,4 +113,3 @@ int main(void) {
 	//list.savelist(pHead, outFile, encriptionKey);
 	return 0;
 }
-
