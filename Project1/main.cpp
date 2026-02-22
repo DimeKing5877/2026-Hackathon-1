@@ -14,7 +14,7 @@ int main(void) {
 	Node* pHead = NULL;
 	system("cls");
 	
-if (checkEncriptedList("encripted.txt") != "") {//file is empty
+	if (checkEncriptedList("encripted.txt") != "") {//file is empty
 		FILE* inStream = fopen("encripted.txt", "r");
 		if (inStream != NULL) {
 			success = list.loadlist(&pHead, inStream, encriptionKey);
@@ -39,10 +39,26 @@ if (checkEncriptedList("encripted.txt") != "") {//file is empty
 					list.displayFull(pHead);
 					break;
 				case 2:
-
+					if (pHead != NULL) {
+						char site[SITE_SIZE] = "";
+						std::cout << "what site would you like to search" << std::endl;
+						if (std::cin >> site) {
+							list.displayEmail(pHead, site);
+						}
+						system("pause");
+						system("cls");
+					}
 					break;
 				case 3:
-
+					if (pHead != NULL) {
+						char email[email_SIZE] = "";
+						std::cout << "what email would you like to search" << std::endl;
+						if (std::cin >> email) {
+							list.displayEmail(pHead, email);
+						}
+						system("pause");
+						system("cls");
+					}
 					break;
 				case 4:
 					if (pHead != NULL) {
@@ -61,7 +77,7 @@ if (checkEncriptedList("encripted.txt") != "") {//file is empty
 					break;
 
 				case 7:
-
+						
 					break;
             
 				case 8://exit

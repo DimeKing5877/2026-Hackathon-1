@@ -1,30 +1,5 @@
 #include "Header.hpp"
 
-void LinkList::linkFunCall(int selection, Node** pHead)
-{
-	switch (selection) {
-	case 1:
-
-		break;
-	case 2:
-
-		break;
-	case 3:
-
-		break;
-	case 4:
-
-		break;
-	case 5:
-
-		break;
-	case 6:
-
-		break;
-	}
-
-}
-
 //reading from encripted file, key should be good, file should not be empty
 int LinkList::loadlist(Node** pHead, FILE* inputStream, char* key){
 	int success = 0;
@@ -33,11 +8,12 @@ int LinkList::loadlist(Node** pHead, FILE* inputStream, char* key){
 	}
 	char line[LINE_SIZE] = "";
 	Data info;
+	keycreation kay;
 	//ignores one line from file
 	fgets(line, LINE_SIZE, inputStream);
 	while (fgets(line, LINE_SIZE, inputStream) != NULL) {
 		info = loadLine(line);
-		//info = dectyption(info, key);
+		info = kay.dectyption(info, key);
 		success = insertatfront(pHead, info);
 	}
 	if (*pHead != NULL) {
@@ -102,20 +78,27 @@ void LinkList::clearList(Node** pHead){
 void LinkList::savelist(Node* pHead, FILE* outStream, char* key){
 	Node* pCur = pHead;
 	char line[LINE_SIZE] = "";
-	//pCur->data = encryption(pCur->data, key)
-	strcat(line, pCur->data.website);
-	strcat(line, ",\0");
-	strcat(line, pCur->data.email);
-	strcat(line, ",\0");
-	strcat(line, pCur->data.username);
-	strcat(line, ",\0");
-	strcat(line, pCur->data.password);
-	strcat(line, ",\0");
-	strcat(line, pCur->data.date);
-	strcat(line, ",\n\0");
+	keycreation kay;
+	char key2[16] = "";
+	//strcpy(key2, key);
+	//fputs(kay.encrypt(key2, key, 16), outStream);
+	fputs(key, outStream);
+	while (pCur != NULL) {
+		pCur->data = kay.encryption(pCur->data, key);
+		strcat(line, pCur->data.website);
+		strcat(line, ",\0");
+		strcat(line, pCur->data.email);
+		strcat(line, ",\0");
+		strcat(line, pCur->data.username);
+		strcat(line, ",\0");
+		strcat(line, pCur->data.password);
+		strcat(line, ",\0");
+		strcat(line, pCur->data.date);
+		strcat(line, ",\n\0");
 
-
-	fputs(line, outStream);
+		fputs(line, outStream);
+		pCur = pCur->pNext;
+	}
 }
 
 void LinkList::displayFull(Node* pHead){
@@ -136,11 +119,29 @@ void LinkList::displayFull(Node* pHead){
 	system("pause");
 }
 
-void LinkList::displayType(Node* pHead, char* type){
+void LinkList::displayEmail(Node* pHead, char* email){
 	Node* pCur = pHead;
 	int count = 1;
 	while (pCur != NULL) {
-		if (strcmp(pCur->data.email, type) == 0) {
+		if (strcmp(pCur->data.email, email) == 0) {
+			std::cout << "Entry " << count << std::endl;
+			std::cout << "Site: " << pCur->data.website << std::endl;
+			std::cout << "Email: " << pCur->data.email << std::endl;
+			std::cout << "Username: " << pCur->data.username << std::endl;
+			std::cout << "Password: " << pCur->data.password << std::endl;
+			std::cout << "Date: " << pCur->data.date << std::endl;
+			std::cout << "" << std::endl;
+			count += 1;
+		}
+		pCur = pCur->pNext;
+	}
+}
+
+void LinkList::displaySite(Node* pHead, char* site){
+	Node* pCur = pHead;
+	int count = 1;
+	while (pCur != NULL) {
+		if (strcmp(pCur->data.website, site) == 0) {
 			std::cout << "Entry " << count << std::endl;
 			std::cout << "Site: " << pCur->data.website << std::endl;
 			std::cout << "Email: " << pCur->data.email << std::endl;
