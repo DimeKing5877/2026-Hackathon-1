@@ -24,9 +24,15 @@
     <ClCompile Include="UImain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="cryption.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="UIHeader.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
