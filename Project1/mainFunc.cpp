@@ -4,8 +4,11 @@
 //gets user input for website, email, username, password, and date, 
 // then creates a new node with the user input and inserts it at the front of the linked list
 void insertUserData(Node** pList) {
+	system("cls");
 	Data info;
 	LinkList list;
+	//get new line from file to clear buffer
+	std::cin.ignore();
 	getWebsite(info.website);
 	getEmail(info.email);
 	getUsername(info.username);

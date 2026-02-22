@@ -46,7 +46,13 @@ if (checkEncriptedList("encripted.txt") != "") {//file is empty
 
 					break;
 				case 4:
-
+					if (pHead != NULL) {
+						FILE* outFile = fopen("encripted.txt", "w");
+						if (outFile != NULL) {
+							list.savelist(pHead, outFile, encriptionKey);
+						}
+						fclose(outFile);
+					}
 					break;
 				case 5:
 					insertUserData(&pHead);
@@ -59,15 +65,15 @@ if (checkEncriptedList("encripted.txt") != "") {//file is empty
 
 					break;
             
-      case 8://exit
-			  if (pHead != NULL) {
-				  FILE* outFile = fopen("encripted.txt", "w");
-				  if (outFile != NULL) {
-					  list.savelist(pHead, outFile, encriptionKey);
-				  }
-				  fclose(outFile);
-			  }
-			  break;
+				case 8://exit
+					if (pHead != NULL) {
+						FILE* outFile = fopen("encripted.txt", "w");
+						if (outFile != NULL) {
+							list.savelist(pHead, outFile, encriptionKey);
+						}
+						fclose(outFile);
+					}
+					break;
 				}
 			}
 			else {
