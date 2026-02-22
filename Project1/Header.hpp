@@ -31,8 +31,6 @@ typedef struct memnode {
 class LinkList {
 public:
 
-
-	void linkFunCall(int selection, Node** pHead);
 	int loadlist(Node** pHead, FILE* inputStream, char* key);
 
 	Data loadLine(char* line);
@@ -46,7 +44,8 @@ public:
 	void savelist(Node* pHead, FILE* outStream, char* key);
 
 	void displayFull(Node* pHead);
-	void displayType(Node* pHead, char* type);
+	void displayEmail(Node* pHead, char* email);
+	void displaySite(Node* pHead, char* site);
 
 
 	Node* search(Node* pHead, int value);
@@ -64,7 +63,6 @@ public:
 	Data encryption(Data info, char* key);
 	Data dectyption(Data info, char* key);
 
-private:
 	char* encrypt(char* info, char* key, int size);
 	char* decrypt(char* info, char* key, int size);
 };
