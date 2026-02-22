@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <time.h>
-#inclide <stdlib.h>
+//#inclide <stdlib.h>
 
 
 
