@@ -1,5 +1,6 @@
 #pragma once
 
+#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <time.h>
 //#inclide <stdlib.h>
@@ -61,6 +62,6 @@ public:
 	Data dectyption(Data info, char* key);
 
 private:
-
-
+	char* encrypt(char* info, char* key, int size);
+	char* decrypt(char* info, char* key, int size);
 };
