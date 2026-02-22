@@ -1,22 +1,5 @@
 #include "Header.hpp"
 
-
-void mainmenu(void) {
-	std::cout << "main menu: " << std::endl;
-	std::cout << "1.) Print all passwords" << std::endl;
-	std::cout << "2.) print only set Sites" << std::endl;
-	std::cout << "3.) print only set email" << std::endl;
-	std::cout << "4.) Delete entry" << std::endl;
-	std::cout << "5.) insert new entry" << std::endl;
-	std::cout << "6.) edit existing entry" << std::endl;
-	std::cout << "7.) generate a new Key" << std::endl;
-	std::cout << "8.) save and exit" << std::endl;
-}
-
-
-
-
-
 void LinkList::linkFunCall(int selection, Node** pHead)
 {
 	switch (selection) {
@@ -50,12 +33,11 @@ int LinkList::loadlist(Node** pHead, FILE* inputStream, char* key){
 	}
 	char line[LINE_SIZE] = "";
 	Data info;
+	//ignores one line from file
+	fgets(line, LINE_SIZE, inputStream);
 	while (fgets(line, LINE_SIZE, inputStream) != NULL) {
-
 		info = loadLine(line);
-		
 		//info = dectyption(info, key);
-		
 		success = insertatfront(pHead, info);
 	}
 	if (*pHead != NULL) {
@@ -137,6 +119,7 @@ void LinkList::savelist(Node* pHead, FILE* outStream, char* key){
 }
 
 void LinkList::displayFull(Node* pHead){
+	system("cls");
 	Node* pCur = pHead;
 	int count = 1;
 	while (pCur != NULL) {
@@ -150,6 +133,7 @@ void LinkList::displayFull(Node* pHead){
 		count += 1;
 		pCur = pCur->pNext;
 	}
+	system("pause");
 }
 
 void LinkList::displayType(Node* pHead, char* type){
