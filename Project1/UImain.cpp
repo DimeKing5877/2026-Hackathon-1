@@ -6,7 +6,7 @@ std::string userKeyEntry(const std::string& filename) {
 	//empty string
 	std::string emptyString = "";
 	//CHeck if the encripted file is empty
-	std::string fileKey = checkEncriptedList(filename);
+	std::string fileKey = checkEncryptedList(filename);
 	if (fileKey != emptyString) {
 		//file is not empty, so we can sort list into a linked list
 		userKey = promptUserForKey();
@@ -20,7 +20,7 @@ std::string userKeyEntry(const std::string& filename) {
 	}
 	else {
 		//file is empty, so we need to generate an encription key before exepting user input
-		userKey = generateIncriptionKey();
+		userKey = generateEncryptionKey();
 	}
 	return userKey;
 }
@@ -36,7 +36,7 @@ int checkUserKey(const std::string& userKey, const std::string& fileKey) {
 }
 //checks if the encripted file is empty or not, returns 1 if the file is not empty, 0 if the file is empty, 
 // and -1 if there was an error opening the file
-std::string checkEncriptedList(const std::string& filename) {
+std::string checkEncryptedList(const std::string& filename) {
 	//empty string
 	std::string emptyString = "";
 	//declare a string variable to hold the first line of the encripted file being the key
@@ -79,7 +79,7 @@ std::string promptUserForKey() {
 	return userKey;
 }
 //generatesw a random encription key and saves it to the encripted file, returns the generated key as a string
-std::string generateIncriptionKey(){
+std::string generateEncryptionKey(){
 	//generate a random encription key and save it to the encripted file
 	std::string key;
 	const int keyLength = 16; //length of the encription key

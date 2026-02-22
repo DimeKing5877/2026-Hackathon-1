@@ -4,8 +4,8 @@
 int main(void) {
 	//UImain();
 	//encription key char array
-	char encriptionKey[17] = "";
-	getEncriptionKey(encriptionKey);
+	char encryptionKey[17] = "";
+	getEncryptionKey(encryptionKey);
 
 	//key is checked
 	int success = 1;
@@ -14,10 +14,10 @@ int main(void) {
 	Node* pHead = NULL;
 	system("cls");
 	
-	if (checkEncriptedList("encripted.txt") != "") {//file is empty
+	if (checkEncryptedList("encripted.txt") != "") {//file is empty
 		FILE* inStream = fopen("encripted.txt", "r");
 		if (inStream != NULL) {
-			success = list.loadlist(&pHead, inStream, encriptionKey);
+			success = list.loadlist(&pHead, inStream, encryptionKey);
 			fclose(inStream);
 		}
 	}
@@ -26,7 +26,7 @@ int main(void) {
 		while (answer != 8) {
 			system("cls");
 			//print incription key
-			std::cout << "Encription key: " << encriptionKey << std::endl;
+			std::cout << "Encription key: " << encryptionKey << std::endl;
 			//print main menu
 			mainmenu();
 			//prompt user for input and check if it is valid
@@ -94,13 +94,13 @@ int main(void) {
 					break;
 
 				case 7:
-					getNewEncriptionKey(encriptionKey);
+					getNewEncryptionKey(encryptionKey);
 					break;
 				case 8://exit
 					if (pHead != NULL) {
 						FILE* outFile = fopen("encripted.txt", "w");
 						if (outFile != NULL) {
-							list.savelist(pHead, outFile, encriptionKey);
+							list.savelist(pHead, outFile, encryptionKey);
 							fclose(outFile);
 						}
 					}

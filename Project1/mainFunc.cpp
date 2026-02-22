@@ -29,7 +29,7 @@ void insertUserData(Node** pList) {
 	list.insertatfront(pList, info);
 }
 
-void getEncriptionKey(char* charKey) {
+void getEncryptionKey(char* charKey) {
 	std::string filename = "encripted.txt";
 	//checks if the user has a key or needs to generat one
 	std::string userKey = userKeyEntry(filename);
@@ -99,10 +99,10 @@ void edit(Node* pCur) {
 	}
 }
 
-void getNewEncriptionKey(char* charKey) {
+void getNewEncryptionKey(char* charKey) {
 	std::string filename = "encripted.txt";
 	//gnerates a new random key for the user
-	std::string userKey = generateIncriptionKey();
+	std::string userKey = generateEncryptionKey();
 	//pritn user key
 	std::cout << "User key: " << userKey << std::endl;
 	//convert user key to char array
