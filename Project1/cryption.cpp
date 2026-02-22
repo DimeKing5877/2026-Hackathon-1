@@ -1,6 +1,6 @@
 #include "Header.hpp"
 
-
+//dencypts all data entry using the encriptionkey and sends a copy of the data
 Data keycreation::encryption(Data info, char* key)
 {
     Data info2;
@@ -12,6 +12,7 @@ Data keycreation::encryption(Data info, char* key)
     return info2;
 }
 
+//decypts all data entry using the encriptionkey and sends a copy of the data
 Data keycreation::dectyption(Data info, char* key)
 {
     Data info2;
@@ -23,27 +24,34 @@ Data keycreation::dectyption(Data info, char* key)
     return info2;
 }
 
+//encypts a data entry using the encriptionkey and sends it back
 char* keycreation::encrypt(char* info, char* key, int size) {
     for (int index = 0; index < size; index++) {
         for (int kindex = 0; kindex < 17; kindex++) {
             if (key[kindex] % 2 == 0) {//if even
                 info[index] += key[kindex];
+                info[index] -= kindex;
             }
             if (key[kindex] % 2 == 1) {//if odd
                 info[index] -= key[kindex];
+                info[index] += kindex;
             }
         }
     }
     return info;
 }
 
+
+//decypts a data entry using the encriptionkey and sends it back
 char* keycreation::decrypt(char* info, char* key, int size){
     for (int index = 0; index < size; index++) {
         for (int kindex = 17 - 1; kindex >= 0; kindex--) {
             if (key[kindex] % 2 == 0) {//if even
+                info[index] += kindex;
                 info[index] -= key[kindex];
             }
             if (key[kindex] % 2 == 1) {//if odd
+                info[index] -= kindex;
                 info[index] += key[kindex];
             }
         }

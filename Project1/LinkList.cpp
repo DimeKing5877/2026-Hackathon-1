@@ -44,7 +44,7 @@ int LinkList::insertatfront(Node** pHead, Data info){
 	else {
 		pCur->pPrev = pMem;
 		pMem->pNext = pCur;
-		pCur = pMem;
+		*pHead = pMem;
 		success = 1;
 	}
 	return success;
@@ -83,6 +83,7 @@ void LinkList::savelist(Node* pHead, FILE* outStream, char* key){
 	fputs(key, outStream);
 	fprintf(outStream, "\n");
 	while (pCur != NULL) {
+		cleanline(line);
 		pCur->data = kay.encryption(pCur->data, key);
 		strcat(line, pCur->data.website);
 		strcat(line, ",");
@@ -93,9 +94,16 @@ void LinkList::savelist(Node* pHead, FILE* outStream, char* key){
 		strcat(line, pCur->data.password);
 		strcat(line, ",");
 		strcat(line, pCur->data.date);
+		strcat(line, "\n");
 
 		fputs(line, outStream);
 		pCur = pCur->pNext;
+	}
+}
+
+void LinkList::cleanline(char* line){
+	for (int index = 0; index < strlen(line); index++) {
+		line[index] = '\0';
 	}
 }
 
