@@ -1,5 +1,5 @@
-#include "UIHeader.hpp"
 #include "Header.hpp"
+#include "UIHeader.hpp"
 
 int main(void) {
 	//UImain();
@@ -14,7 +14,15 @@ int main(void) {
 	LinkList list;
 	Node* pHead = NULL;
 	system("cls");
-	//success = list.loadlist(&pHead, inStream, encriptionKey);
+	
+if (checkEncriptedList("encripted.txt") != "") {//file is empty
+		FILE* inStream = fopen("encripted.txt", "r");
+		if (inStream != NULL) {
+			success = list.loadlist(&pHead, inStream, encriptionKey);
+			fclose(inStream);
+		}
+	}
+
 	if (success == 1) {
 		while (answer != 7) {
 			system("cls");
@@ -50,6 +58,16 @@ int main(void) {
 				case 7:
 
 					break;
+            
+      case 8://exit
+			  if (pHead != NULL) {
+				  FILE* outFile = fopen("encripted.txt", "w");
+				  if (outFile != NULL) {
+					  list.savelist(pHead, outFile, encriptionKey);
+				  }
+				  fclose(outFile);
+			  }
+			  break;
 				}
 			}
 			else {
