@@ -1,10 +1,5 @@
-<<<<<<< Updated upstream
-#include "Header.hpp"
-=======
 #include "Header.hpp"
 #include "UIHeader.hpp"
-
-
 
 int main(void) {
 	//UImain();
@@ -12,14 +7,15 @@ int main(void) {
 	char encriptionKey[16] = "";
 	getEncriptionKey(encriptionKey);
 
-
+	//key is checked
+	//FILE* inStream = fopen("encripted.txt", "r");
+	int success = 1;
+	int answer = 0;
 	LinkList list;
 	Node* pHead = NULL;
-	int answer = 0, success = 0;
-
-
+	system("cls");
 	
-	if (checkEncriptedList("encripted.txt") != "") {//file is empty
+if (checkEncriptedList("encripted.txt") != "") {//file is empty
 		FILE* inStream = fopen("encripted.txt", "r");
 		if (inStream != NULL) {
 			success = list.loadlist(&pHead, inStream, encriptionKey);
@@ -27,69 +23,65 @@ int main(void) {
 		}
 	}
 
-	while (answer != 8) {
-		mainmenu();
-		//input is asked and checked
-		switch (answer) {
-		case 1:
+	if (success == 1) {
+		while (answer != 7) {
+			system("cls");
+			//print incription key
+			std::cout << "Encription key: " << encriptionKey << std::endl;
+			//print main menu
+			mainmenu();
+			//prompt user for input and check if it is valid
+			std::cout << "Enter your selection: ";
+			//get user input
+			if (std::cin >> answer) {
+				//input is asked and checked
+				switch (answer) {
+				case 1:
+					list.displayFull(pHead);
+					break;
+				case 2:
 
-			break;
-		case 2:
+					break;
+				case 3:
 
-			break;
-		case 3:
+					break;
+				case 4:
 
-			break;
-		case 4:
-			list.displayFull(pHead);
-			int value = 0;
-			std::cout << "Which to delete(entry #)" << std::endl;
-			if (std::cin >> value) {
-				list.deleteNode(&pHead, list.search(pHead, value));
-			}
-			break;
-		case 5:
+					break;
+				case 5:
+					insertUserData(&pHead);
+					break;
+				case 6:
 
-			break;
-		case 6:
+					break;
 
-			break;
+				case 7:
 
-		case 7:
-
-			break;
-
-		case 8://exit
-			if (pHead != NULL) {
-				FILE* outFile = fopen("encripted.txt", "w");
-				if (outFile != NULL) {
-					list.savelist(pHead, outFile, encriptionKey);
+					break;
+            
+      case 8://exit
+			  if (pHead != NULL) {
+				  FILE* outFile = fopen("encripted.txt", "w");
+				  if (outFile != NULL) {
+					  list.savelist(pHead, outFile, encriptionKey);
+				  }
+				  fclose(outFile);
+			  }
+			  break;
 				}
-				fclose(outFile);
 			}
-			break;
+			else {
+				std::cout << "Invalid input. Please enter a number between 1 and 7." << std::endl;
+				std::cin.clear();
+				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			}
 		}
 	}
-	if (pHead != NULL) {
-		list.clearList(&pHead);
+	else {
+		std::cout << "Failed to load the encripted file. Please check the file and the encription key." << std::endl;
 	}
 
-	
-
+	//list.savelist(pHead, outFile, encriptionKey);
+	//fclose(inStream);
 	return 0;
 }
-
-
-
-
-void getEncriptionKey(char* charKey) {
-	std::string filename = "encripted.txt";
-	//checks if the user has a key or needs to generat one
-	std::string userKey = userKeyEntry(filename);
-	//pritn user key
-	std::cout << "User key: " << userKey << std::endl;
-	//convert user key to char array
-	strcpy(charKey, userKey.c_str());
-	system("pause");
-}
->>>>>>> Stashed changes

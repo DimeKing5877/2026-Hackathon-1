@@ -1,6 +1,22 @@
 #include "Header.hpp"
 
 
+void mainmenu(void) {
+	std::cout << "main menu: " << std::endl;
+	std::cout << "1.) Print all passwords" << std::endl;
+	std::cout << "2.) print only set Sites" << std::endl;
+	std::cout << "3.) print only set email" << std::endl;
+	std::cout << "4.) Delete entry" << std::endl;
+	std::cout << "5.) insert new entry" << std::endl;
+	std::cout << "6.) edit existing entry" << std::endl;
+	std::cout << "7.) generate a new Key" << std::endl;
+	std::cout << "8.) save and exit" << std::endl;
+}
+
+
+
+
+
 void LinkList::linkFunCall(int selection, Node** pHead)
 {
 	switch (selection) {
@@ -15,6 +31,11 @@ void LinkList::linkFunCall(int selection, Node** pHead)
 		break;
 	case 4:
 
+		break;
+	case 5:
+
+		break;
+	case 6:
 
 		break;
 	}

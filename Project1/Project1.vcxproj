@@ -127,11 +127,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="cryption.cpp" />
+    <ClCompile Include="GetInfoFunc.cpp" />
     <ClCompile Include="LinkList.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="mainFunc.cpp" />
     <ClCompile Include="UImain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Header.hpp" />
     <ClInclude Include="UIHeader.hpp" />
   </ItemGroup>
   <ItemGroup>
