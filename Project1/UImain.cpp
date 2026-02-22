@@ -1,34 +1,47 @@
 #include "UIHeader.hpp"
 
-void UImain() {
-	//checks if the user has a key or needs to generat one
-	std::string userKey = userKeyEntry();
-
-
-}
 std::string userKeyEntry(const std::string& filename) {
 	//declare a string variable to hold the user input for the encription key
 	std::string userKey;
+	//empty string
+	std::string emptyString = "";
 	//CHeck if the encripted file is empty
-	int checkEncript = checkEncriptedList(filename);
-	if (checkEncript == 1) {
+	std::string fileKey = checkEncriptedList(filename);
+	if (fileKey != emptyString) {
 		//file is not empty, so we can sort list into a linked list
 		userKey = promptUserForKey();
-		//int checkKey = checkUserKey();
-	}
-	else if (checkEncript == 0) {
-		//file is empty, so we need to generate an encription key before exepting user input
-		userKey = generateIncriptionKey();
+		int checkKey = checkUserKey(userKey, fileKey);
+		if (checkKey != 1) {
+			//the keys do not match, so we can display an error message and prompt again
+			std::cout << "The encription keys do not match. Please try again." << std::endl;
+			userKeyEntry(filename);
+		}
 	}
 	else {
-		std::cout << "Error checking the encripted file." << std::endl;
+		//file is empty, so we need to generate an encription key before exepting user input
+		userKey = generateIncriptionKey();
 	}
 	return userKey;
 }
 
+int checkUserKey(const std::string& userKey, const std::string& fileKey) {
+	//check if the user input key matches the key in the encripted file, returns 1 if the keys match, 0 if the keys do not match
+	if (userKey == fileKey) {
+		std::cout << "The encription keys match. You can proceed with the encription process." << std::endl;
+		return 1;
+	}
+	else {
+		std::cout << "The encription keys do not match. Please try again." << std::endl;
+		return 0;
+	}
+}
+
 //checks if the encripted file is empty or not, returns 1 if the file is not empty, 0 if the file is empty, 
 // and -1 if there was an error opening the file
-int checkEncriptedList(const std::string& filename) {
+std::string checkEncriptedList(const std::string& filename) {
+	//empty string
+	std::string emptyString = "";
+	//declare a string variable to hold the first line of the encripted file being the key
 	std::string line;
 	//open the file and check if it is empty
 	std::ifstream encFile(filename);
@@ -36,17 +49,16 @@ int checkEncriptedList(const std::string& filename) {
 		std::getline(encFile, line);
 		if (line.empty()) {
 			//if the file is empty, return 0
-			return 0;
+			return emptyString;
 		}
 		else {
 			//if the file is not empty, return 1
-			return 1;
+			return line;
 		}
 	}
 	else {
 		//file open failed
 		std::cout << "Error opening the encripted file." << std::endl;
-		return -1;
 	}
 	//close the file
 	encFile.close();
@@ -67,6 +79,7 @@ std::string promptUserForKey() {
 		std::cout << "Invalid input. Please enter a valid encription key." << std::endl;
 		promptUserForKey();
 	}
+	return userKey;
 }
 //generatesw a random encription key and saves it to the encripted file, returns the generated key as a string
 std::string generateIncriptionKey(){

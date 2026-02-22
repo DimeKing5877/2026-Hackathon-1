@@ -3,7 +3,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <time.h>
-//#inclide <stdlib.h>
 
 #define PASS_SIZE 20
 #define SITE_SIZE 20
