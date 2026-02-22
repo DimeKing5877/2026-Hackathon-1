@@ -50,8 +50,9 @@ int LinkList::loadlist(Node** pHead, FILE* inputStream, char* key){
 	}
 	char line[LINE_SIZE] = "";
 	Data info;
-	while (fgets(line, LINE_SIZE, inputStream) != NULL) {
-
+	fgets(line, LINE_SIZE, inputStream);//grabs newline
+	while (!feof(inputStream)) {
+		fgets(line, LINE_SIZE, inputStream);
 		strcpy(info.website, strtok(line, ","));
 		strcpy(info.email, strtok(NULL, ","));
 		strcpy(info.username, strtok(NULL, ","));

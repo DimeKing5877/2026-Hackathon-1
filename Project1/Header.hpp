@@ -67,7 +67,14 @@ private:
 
 
 
-
-
+//Function prototypes
+//prints options for the user to select from
 void mainmenu(void);
 
+//functions that collect user iputed data for the website, email, username, password, and date
+void getWebsite(char* websiteDestination);
+void getEmail(char* emailDestination);
+void getUsername(char* usernameDestination);
+void getPassword(char* passwordDestination);
+void getDate(char* dateDestination);
+void insertUserData(Node** pList);

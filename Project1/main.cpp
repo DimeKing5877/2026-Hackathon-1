@@ -1,7 +1,5 @@
-#include "Header.hpp"
 #include "UIHeader.hpp"
-
-
+#include "Header.hpp"
 
 int main(void) {
 	//UImain();
@@ -9,61 +7,63 @@ int main(void) {
 	char encriptionKey[16] = "";
 	getEncriptionKey(encriptionKey);
 
-
-
-
 	//key is checked
+	//FILE* inStream = fopen("encripted.txt", "r");
+	int success = 1;
+	int answer = 0;
+	LinkList list;
+	Node* pHead = NULL;
+	system("cls");
+	//success = list.loadlist(&pHead, inStream, encriptionKey);
+	if (success == 1) {
+		while (answer != 7) {
+			system("cls");
+			//print incription key
+			std::cout << "Encription key: " << encriptionKey << std::endl;
+			//print main menu
+			mainmenu();
+			//prompt user for input and check if it is valid
+			std::cout << "Enter your selection: ";
+			//get user input
+			if (std::cin >> answer) {
+				//input is asked and checked
+				switch (answer) {
+				case 1:
+					list.displayFull(pHead);
+					break;
+				case 2:
 
+					break;
+				case 3:
 
-	FILE* inStream = fopen(".txt", "r");
+					break;
+				case 4:
 
-	success = list.loadlist(&pHead, inStream, key);
+					break;
+				case 5:
+					insertUserData(&pHead);
+					break;
+				case 6:
 
+					break;
 
-	while (answer != 8) {
-		mainmenu();
-		//input is asked and checked
-		switch (answer) {
-		case 1:
+				case 7:
 
-			break;
-		case 2:
-
-			break;
-		case 3:
-
-			break;
-		case 4:
-
-			break;
-		case 5:
-
-			break;
-		case 6:
-
-			break;
-		
-		case 7:
-
-			break;
+					break;
+				}
+			}
+			else {
+				std::cout << "Invalid input. Please enter a number between 1 and 7." << std::endl;
+				std::cin.clear();
+				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			}
 		}
 	}
+	else {
+		std::cout << "Failed to load the encripted file. Please check the file and the encription key." << std::endl;
+	}
 
-	list.savelist(pHead, outFile, key);
-
+	//list.savelist(pHead, outFile, encriptionKey);
+	//fclose(inStream);
 	return 0;
-}
-
-
-
-
-void getEncriptionKey(char* charKey) {
-	std::string filename = "encripted.txt";
-	//checks if the user has a key or needs to generat one
-	std::string userKey = userKeyEntry(filename);
-	//pritn user key
-	std::cout << "User key: " << userKey << std::endl;
-	//convert user key to char array
-	strcpy(charKey, userKey.c_str());
-	system("pause");
 }
