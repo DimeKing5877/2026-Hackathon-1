@@ -66,7 +66,7 @@ void edit(Node* pCur) {
 	std::cout << "3) Username! " << std::endl;
 	std::cout << "4) Password! " << std::endl;
 	std::cout << "5) Date! " << std::endl;
-	std::cout << "What would you like to edit?" << std::endl;
+	std::cout << "What would you like to edit? ";
 	if (std::cin >> answer) {
 		std::cin.ignore();
 		switch (answer) {

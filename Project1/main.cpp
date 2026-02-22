@@ -4,7 +4,7 @@
 int main(void) {
 	//UImain();
 	//encription key char array
-	char encriptionKey[16] = "";
+	char encriptionKey[17] = "";
 	getEncriptionKey(encriptionKey);
 
 	//key is checked
@@ -56,9 +56,10 @@ int main(void) {
 					break;
 				case 3:
 					if (pHead != NULL) {
+						system("cls");
 						std::string email;
 						char emailChr[email_SIZE] = "";
-						std::cout << "what email would you like to search" << std::endl;
+						std::cout << "what email would you like to search: ";
 						if (std::cin >> email) {
 							//converts string to char array
 							strcpy(emailChr, email.c_str());
@@ -70,17 +71,20 @@ int main(void) {
 					}
 					break;
 				case 4:
-					int value = 0;
-					list.displayFull(pHead);
-					std::cout << "What entry would you like to delete: ";
-					if (std::cin >> value) {
-						list.deleteNode(&pHead, list.search(pHead, value));
+					if (pHead != NULL) {
+						system("cls");
+						int value = 0;
+						list.displayFull(pHead);
+						std::cout << "What entry would you like to delete: ";
+						if (std::cin >> value) {
+							list.deleteNode(&pHead, list.search(pHead, value));
+						}
+						else {
+							std::cout << "delete failed: ";
+						}
+						system("pause");
+						system("cls");
 					}
-					else {
-						std::cout << "delete failed: " ;
-					}
-					system("pause");
-					system("cls");
 					break;
 				case 5:
 					insertUserData(&pHead);

@@ -79,22 +79,20 @@ void LinkList::savelist(Node* pHead, FILE* outStream, char* key){
 	Node* pCur = pHead;
 	char line[LINE_SIZE] = "";
 	keycreation kay;
-	char key2[16] = "";
-	//strcpy(key2, key);
-	//fputs(kay.encrypt(key2, key, 16), outStream);
+	//printng key to file
 	fputs(key, outStream);
+	fprintf(outStream, "\n");
 	while (pCur != NULL) {
 		pCur->data = kay.encryption(pCur->data, key);
 		strcat(line, pCur->data.website);
-		strcat(line, ",\0");
+		strcat(line, ",");
 		strcat(line, pCur->data.email);
-		strcat(line, ",\0");
+		strcat(line, ",");
 		strcat(line, pCur->data.username);
-		strcat(line, ",\0");
+		strcat(line, ",");
 		strcat(line, pCur->data.password);
-		strcat(line, ",\0");
+		strcat(line, ",");
 		strcat(line, pCur->data.date);
-		strcat(line, ",\n\0");
 
 		fputs(line, outStream);
 		pCur = pCur->pNext;

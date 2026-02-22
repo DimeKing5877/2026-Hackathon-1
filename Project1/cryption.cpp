@@ -4,28 +4,28 @@
 Data keycreation::encryption(Data info, char* key)
 {
     Data info2;
-    strcpy(info2.website, encrypt(info.website, key, SITE_SIZE));
-    strcpy(info2.email, encrypt(info.email, key, email_SIZE));
-    strcpy(info2.username, encrypt(info.username, key, USERNAME_SIZE));
-    strcpy(info2.password, encrypt(info.password, key, PASS_SIZE));
-    strcpy(info2.date, encrypt(info.date, key, DATE_SIZE));
+    strcpy(info2.website, encrypt(info.website, key, strlen(info.website)));
+    strcpy(info2.email, encrypt(info.email, key, strlen(info.email)));
+    strcpy(info2.username, encrypt(info.username, key, strlen(info.username)));
+    strcpy(info2.password, encrypt(info.password, key, strlen(info.password)));
+    strcpy(info2.date, encrypt(info.date, key, strlen(info.date)));
     return info2;
 }
 
 Data keycreation::dectyption(Data info, char* key)
 {
     Data info2;
-    strcpy(info2.website, decrypt(info.website, key, SITE_SIZE));
-    strcpy(info2.email, decrypt(info.email, key, email_SIZE));
-    strcpy(info2.username, decrypt(info.username, key, USERNAME_SIZE));
-    strcpy(info2.password, decrypt(info.password, key, PASS_SIZE));
-    strcpy(info2.date, decrypt(info.date, key, DATE_SIZE));
+    strcpy(info2.website, decrypt(info.website, key, strlen(info.website)));
+    strcpy(info2.email, decrypt(info.email, key, strlen(info.email)));
+    strcpy(info2.username, decrypt(info.username, key, strlen(info.username)));
+    strcpy(info2.password, decrypt(info.password, key, strlen(info.password)));
+    strcpy(info2.date, decrypt(info.date, key, strlen(info.date)));
     return info2;
 }
 
-char* keycreation::encrypt(char* info, char* key, int size){
+char* keycreation::encrypt(char* info, char* key, int size) {
     for (int index = 0; index < size; index++) {
-        for (int kindex = 0; kindex < 16; kindex++) {
+        for (int kindex = 0; kindex < 17; kindex++) {
             if (key[kindex] % 2 == 0) {//if even
                 info[index] += key[kindex];
             }
@@ -34,13 +34,12 @@ char* keycreation::encrypt(char* info, char* key, int size){
             }
         }
     }
-      
     return info;
 }
 
 char* keycreation::decrypt(char* info, char* key, int size){
     for (int index = 0; index < size; index++) {
-        for (int kindex = 16 - 1; kindex >= 0; kindex--) {
+        for (int kindex = 17 - 1; kindex >= 0; kindex--) {
             if (key[kindex] % 2 == 0) {//if even
                 info[index] -= key[kindex];
             }
