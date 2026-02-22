@@ -48,7 +48,7 @@ int main(void) {
 							//converts string to char array
 							strcpy(siteChr, site.c_str());
 							//searches for site and displays entry
-							list.displayEmail(pHead, siteChr);
+							list.displaySite(pHead, siteChr);
 						}
 						system("pause");
 						system("cls");
