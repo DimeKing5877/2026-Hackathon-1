@@ -15,3 +15,4 @@ int checkUserKey(const std::string& userKey, const std::string& fileKey);
 std::string checkEncriptedList(const std::string& filename);
 std::string promptUserForKey();
 std::string generateIncriptionKey();
+void getNewEncriptionKey(char* charKey);

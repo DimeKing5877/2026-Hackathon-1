@@ -98,3 +98,14 @@ void edit(Node* pCur) {
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	}
 }
+
+void getNewEncriptionKey(char* charKey) {
+	std::string filename = "encripted.txt";
+	//gnerates a new random key for the user
+	std::string userKey = generateIncriptionKey();
+	//pritn user key
+	std::cout << "User key: " << userKey << std::endl;
+	//convert user key to char array
+	strcpy(charKey, userKey.c_str());
+	system("pause");
+}
