@@ -8,7 +8,6 @@ int main(void) {
 	getEncriptionKey(encriptionKey);
 
 	//key is checked
-	//FILE* inStream = fopen("encripted.txt", "r");
 	int success = 1;
 	int answer = 0;
 	LinkList list;
@@ -24,7 +23,7 @@ int main(void) {
 	}
 
 	if (success == 1) {
-		while (answer != 7) {
+		while (answer != 8) {
 			system("cls");
 			//print incription key
 			std::cout << "Encription key: " << encriptionKey << std::endl;
@@ -74,7 +73,7 @@ int main(void) {
 					insertUserData(&pHead);
 					break;
 				case 6:
-
+					editExistingEntry(&pHead);
 					break;
 
 				case 7:
@@ -104,6 +103,6 @@ int main(void) {
 	}
 
 	//list.savelist(pHead, outFile, encriptionKey);
-	//fclose(inStream);
 	return 0;
 }
+

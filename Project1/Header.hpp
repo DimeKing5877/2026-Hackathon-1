@@ -51,7 +51,6 @@ public:
 	Node* search(Node* pHead, int value);
 	void deleteNode(Node** pHead, Node* pCur);
 	int insert(Node** pHead, FILE* inputStream);
-	void edit(Node* pHead, int);
 
 
 
@@ -80,3 +79,5 @@ void getUsername(char* usernameDestination);
 void getPassword(char* passwordDestination);
 void getDate(char* dateDestination);
 void insertUserData(Node** pList);
+void editExistingEntry(Node** pHead);
+void edit(Node* pCur);
