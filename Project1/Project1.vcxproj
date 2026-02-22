@@ -127,14 +127,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Header.hpp" />
     <ClCompile Include="LinkList.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="TestFun.cpp" />
-    <ClCompile Include="TestMain.cpp" />
+    <ClCompile Include="UImain.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="TestHead.hpp" />
+    <ClInclude Include="UIHeader.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="buff.txt" />
+    <Text Include="encripted.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
