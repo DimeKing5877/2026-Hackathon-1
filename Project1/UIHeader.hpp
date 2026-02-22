@@ -9,6 +9,7 @@
 //#include <iomanip>
 //#include <fileapi.h>
 void UImain();
+void getEncriptionKey(char* charKey);
 std::string userKeyEntry(const std::string& filename);
 int checkUserKey(const std::string& userKey, const std::string& fileKey);
 std::string checkEncriptedList(const std::string& filename);
